@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dao.HouseownerInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.pojo.HouseownerInfo" >
+    <id column="HOUSEOWNERID" property="houseownerid" jdbcType="DECIMAL" />
+    <result column="HOUSEOWNERNAME" property="houseownername" jdbcType="VARCHAR" />
+    <result column="HOUSEOWNERPHONE" property="houseownerphone" jdbcType="VARCHAR" />
+    <result column="HOUSEOWNERSTATUS" property="houseownerstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOUSEOWNERID, HOUSEOWNERNAME, HOUSEOWNERPHONE, HOUSEOWNERSTATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from HOUSEOWNERINFO
+    where HOUSEOWNERID = #{houseownerid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from HOUSEOWNERINFO
+    where HOUSEOWNERID = #{houseownerid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.com.pojo.HouseownerInfo" >
+    insert into HOUSEOWNERINFO (HOUSEOWNERID, HOUSEOWNERNAME, HOUSEOWNERPHONE, 
+      HOUSEOWNERSTATUS)
+    values (#{houseownerid,jdbcType=DECIMAL}, #{houseownername,jdbcType=VARCHAR}, #{houseownerphone,jdbcType=VARCHAR}, 
+      #{houseownerstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.pojo.HouseownerInfo" >
+    insert into HOUSEOWNERINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="houseownerid != null" >
+        HOUSEOWNERID,
+      </if>
+      <if test="houseownername != null" >
+        HOUSEOWNERNAME,
+      </if>
+      <if test="houseownerphone != null" >
+        HOUSEOWNERPHONE,
+      </if>
+      <if test="houseownerstatus != null" >
+        HOUSEOWNERSTATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="houseownerid != null" >
+        #{houseownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="houseownername != null" >
+        #{houseownername,jdbcType=VARCHAR},
+      </if>
+      <if test="houseownerphone != null" >
+        #{houseownerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="houseownerstatus != null" >
+        #{houseownerstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.pojo.HouseownerInfo" >
+    update HOUSEOWNERINFO
+    <set >
+      <if test="houseownername != null" >
+        HOUSEOWNERNAME = #{houseownername,jdbcType=VARCHAR},
+      </if>
+      <if test="houseownerphone != null" >
+        HOUSEOWNERPHONE = #{houseownerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="houseownerstatus != null" >
+        HOUSEOWNERSTATUS = #{houseownerstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOUSEOWNERID = #{houseownerid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.pojo.HouseownerInfo" >
+    update HOUSEOWNERINFO
+    set HOUSEOWNERNAME = #{houseownername,jdbcType=VARCHAR},
+      HOUSEOWNERPHONE = #{houseownerphone,jdbcType=VARCHAR},
+      HOUSEOWNERSTATUS = #{houseownerstatus,jdbcType=VARCHAR}
+    where HOUSEOWNERID = #{houseownerid,jdbcType=DECIMAL}
+  </update>
+</mapper>

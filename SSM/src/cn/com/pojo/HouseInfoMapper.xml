@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dao.HouseInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.pojo.HouseInfo" >
+    <id column="HOUSEID" property="houseid" jdbcType="DECIMAL" />
+    <result column="HOUSEDY" property="housedy" jdbcType="DECIMAL" />
+    <result column="HOUSEFH" property="housefh" jdbcType="DECIMAL" />
+    <result column="HOUSEACREAGE" property="houseacreage" jdbcType="DECIMAL" />
+    <result column="HOUSEOWNERID" property="houseownerid" jdbcType="DECIMAL" />
+    <result column="HOUSEUSE" property="houseuse" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOUSEID, HOUSEDY, HOUSEFH, HOUSEACREAGE, HOUSEOWNERID, HOUSEUSE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from HOUSEINFO
+    where HOUSEID = #{houseid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from HOUSEINFO
+    where HOUSEID = #{houseid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.com.pojo.HouseInfo" >
+    insert into HOUSEINFO (HOUSEID, HOUSEDY, HOUSEFH, 
+      HOUSEACREAGE, HOUSEOWNERID, HOUSEUSE
+      )
+    values (#{houseid,jdbcType=DECIMAL}, #{housedy,jdbcType=DECIMAL}, #{housefh,jdbcType=DECIMAL}, 
+      #{houseacreage,jdbcType=DECIMAL}, #{houseownerid,jdbcType=DECIMAL}, #{houseuse,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.pojo.HouseInfo" >
+    insert into HOUSEINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="houseid != null" >
+        HOUSEID,
+      </if>
+      <if test="housedy != null" >
+        HOUSEDY,
+      </if>
+      <if test="housefh != null" >
+        HOUSEFH,
+      </if>
+      <if test="houseacreage != null" >
+        HOUSEACREAGE,
+      </if>
+      <if test="houseownerid != null" >
+        HOUSEOWNERID,
+      </if>
+      <if test="houseuse != null" >
+        HOUSEUSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="houseid != null" >
+        #{houseid,jdbcType=DECIMAL},
+      </if>
+      <if test="housedy != null" >
+        #{housedy,jdbcType=DECIMAL},
+      </if>
+      <if test="housefh != null" >
+        #{housefh,jdbcType=DECIMAL},
+      </if>
+      <if test="houseacreage != null" >
+        #{houseacreage,jdbcType=DECIMAL},
+      </if>
+      <if test="houseownerid != null" >
+        #{houseownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="houseuse != null" >
+        #{houseuse,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.pojo.HouseInfo" >
+    update HOUSEINFO
+    <set >
+      <if test="housedy != null" >
+        HOUSEDY = #{housedy,jdbcType=DECIMAL},
+      </if>
+      <if test="housefh != null" >
+        HOUSEFH = #{housefh,jdbcType=DECIMAL},
+      </if>
+      <if test="houseacreage != null" >
+        HOUSEACREAGE = #{houseacreage,jdbcType=DECIMAL},
+      </if>
+      <if test="houseownerid != null" >
+        HOUSEOWNERID = #{houseownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="houseuse != null" >
+        HOUSEUSE = #{houseuse,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOUSEID = #{houseid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.pojo.HouseInfo" >
+    update HOUSEINFO
+    set HOUSEDY = #{housedy,jdbcType=DECIMAL},
+      HOUSEFH = #{housefh,jdbcType=DECIMAL},
+      HOUSEACREAGE = #{houseacreage,jdbcType=DECIMAL},
+      HOUSEOWNERID = #{houseownerid,jdbcType=DECIMAL},
+      HOUSEUSE = #{houseuse,jdbcType=VARCHAR}
+    where HOUSEID = #{houseid,jdbcType=DECIMAL}
+  </update>
+</mapper>
